@@ -14,6 +14,7 @@ public class AnimationsDoes : MonoBehaviour
     {
         inAnimation = !inAnimation;
     }
+
     public void animateUp()
     {
         mySequence = DOTween.Sequence();
@@ -29,21 +30,21 @@ public class AnimationsDoes : MonoBehaviour
     public void animateDown(int time)
     {
 
-        mySequence = DOTween.Sequence();
+        /*mySequence = DOTween.Sequence();
         inAnimationChange();
         Invoke("inAnimationChange", 2);
 
         float y = this.transform.position.y;
         mySequence.Append(this.transform.DOMoveY(-10f, 1f));
 
-        StartCoroutine(wait(time));
+        StartCoroutine(wait(time));*/
 
 
-        mySequence = DOTween.Sequence();
+        //mySequence = DOTween.Sequence();
         inAnimationChange();
-        Invoke("inAnimationChange", 5);
+        Invoke("inAnimationChange", 2);
 
-        y = this.transform.position.y;
+        float y = this.transform.position.y;
         mySequence.Append(this.transform.DOMoveY(0f, 5f));
 
     }

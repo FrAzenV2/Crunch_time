@@ -25,6 +25,14 @@ public class Swipe_detector : MonoBehaviour
     public static bool fade = true;
     public static bool notMenu = true;
     public static bool notEnd = true;
+
+    public void reset()
+    {
+        bool showMenu = true;
+        bool fade = true;
+        bool notMenu = true;
+        bool notEnd = true;
+    }   
     public void Swipe()
     {
         if (Input.touches.Length > 0)
@@ -81,7 +89,7 @@ public class Swipe_detector : MonoBehaviour
             //save began touch 2d point
             firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         }
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1) && notMenu)
         {
             showMagazine();
         }
@@ -129,23 +137,21 @@ public class Swipe_detector : MonoBehaviour
         if (fade)
         {
             fadeIm.GetComponent<Animation>().Play("FadeAnim");
+            magazine.GetComponent<ThrowMagazines>().hideMagaz();
             magazine.GetComponent<AnimationsDoes>().animateDown(4);
-            //MOOORE ANIMATIONS
 
+            //MOOORE ANIMATIONS
             notEnd = false;
             fade = false;
+            StartCoroutine(wait(4));
         }
     }
 
     public void hideMagazine()
     {
         //Animation to hide
-        if(!fade)
-        {
-
-            notEnd = true;
-            fade = true;
-        }
+            fadeIm.GetComponent<Animation>().Play("NOTFadeAnim");
+        StartCoroutine(wait4(2));
     }
 
     public void showSettMenu()
@@ -177,5 +183,18 @@ public class Swipe_detector : MonoBehaviour
     public static void Reset_SwipeY()
     {
         dirY = 0;
+    }
+
+    IEnumerator wait4(int time)
+    {
+        yield return new WaitForSeconds(time);
+        notEnd = true;
+        fade = true;
+    }
+
+    IEnumerator wait(int time)
+    {
+        yield return new WaitForSeconds(time);
+        ThrowMagazines.can = true;
     }
 }

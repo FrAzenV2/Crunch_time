@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 public class ThrowMagazines : MonoBehaviour
 {
-    public Image[] magazines = new Image[3];
+    public GameObject[] magazines = new GameObject[3];
     public int numberOFAvaliableMagaz = 0;//0 = 1
     public static int nextID = 0;
     Color co;
-    public GameObject prefab;
+    public GameObject mainCam;
+    public static bool can = false;
+
+    public bool inAnimation;
 
     public void hideMagaz()
     {
-        int i = 2 - numberOFAvaliableMagaz;
-        for(int p=2; p>i; p--)
+        for(int p = numberOFAvaliableMagaz+1; p<3; p++)
         {
             co = magazines[p].GetComponent<Image>().color;
             co.a = 0.0f;
@@ -23,8 +26,7 @@ public class ThrowMagazines : MonoBehaviour
 
     public void restMagaz()
     {
-        int i = 2 - numberOFAvaliableMagaz;
-        for (int p = 2; p > i; p--)
+        for (int p = numberOFAvaliableMagaz+1; p < 3; p++)
         {
             co = magazines[p].GetComponent<Image>().color;
             co.a = 1.0f;
@@ -32,19 +34,48 @@ public class ThrowMagazines : MonoBehaviour
         }
     }
 
-
-    void throwMagaz(bool right)
+    void inAnimationChange()
     {
-        int r = Random.Range(0, 1);
-        if(right) magazines[nextID].GetComponent<Animation>().Play("ThrowR");
-        else magazines[nextID].GetComponent<Animation>().Play("ThrowL");
-        nextID++;
-
-        if (nextID > numberOFAvaliableMagaz)
+        inAnimation = !inAnimation;
+    }
+    public void throwMagaz()
+    {
+        if(can)
         {
-            Instantiate(prefab);
-            Destroy(this);
-            //fin throwing stage
+            Sequence mySequence = DOTween.Sequence();
+            inAnimationChange();
+            Invoke("inAnimationChange", 2);
+            mySequence.Append(magazines[nextID].transform.DORotate(new Vector3(0, -90, 0), 0.5f));
+
+            nextID++;
+
+            if (nextID > numberOFAvaliableMagaz)
+            {
+                nextID = 0;
+
+                Invoke("inAnimationChange", 2);
+
+                mySequence.Append(this.transform.DOMoveY(-10f, 2f));
+
+                for (int i = 0; i <= numberOFAvaliableMagaz; i++)
+                {
+                    // mySequence = DOTween.Sequence();
+                    inAnimationChange();
+                    Invoke("inAnimationChange", 2);
+                    mySequence.Append(magazines[i].transform.DORotate(new Vector3(0, 0, 0), 0.5f));
+                }
+                mainCam.GetComponent<Swipe_detector>().hideMagazine();
+
+                can = false;
+                StartCoroutine(wait4(2));
+                //fin throwing stage
+            }
         }
+    }
+
+    IEnumerator wait4(int time)
+    {
+        yield return new WaitForSeconds(time);
+        restMagaz();
     }
 }
