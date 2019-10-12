@@ -26,6 +26,7 @@ public class InkManager : MonoBehaviour
 
     public bool storyEnded = false;
     private bool firstTime = true;
+    
 
     public Choice choice0;
     public Choice choice1;
@@ -72,7 +73,7 @@ public class InkManager : MonoBehaviour
             card_Rotater.TurnCard(1);
         }
 
-        Debug.Log("!@!@!@!");
+        //Debug.Log("!@!@!@!");
         // Display all the choices, if there are any!
         if (story.currentChoices.Count > 0)
         {
@@ -100,12 +101,14 @@ public class InkManager : MonoBehaviour
 
     public void ChooseLeft()
     {
+      if (!card_Rotater.inAnimation)
         if (storyEnded)
         {
             StartStory();
         }
         else
         {
+       
             card_Rotater.TurnCard(2);
             //story.ChooseChoiceIndex(choice0.index);
             StartCoroutine(Delay(0));
@@ -115,6 +118,7 @@ public class InkManager : MonoBehaviour
 
     public void ChooseRight()
     {
+       if(!card_Rotater.inAnimation) 
         if (storyEnded)
         {
 
@@ -122,16 +126,18 @@ public class InkManager : MonoBehaviour
         }
         else
         {
+            
             card_Rotater.TurnCard(2);
             StartCoroutine(Delay(1));
+
             //story.ChooseChoiceIndex(choice1.index);
             
         }
     }
 
-    void ChoiseSelecter()
+   /* void ChoiseSelecter()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !inAnimation)
         {
             if (Swipe_detector.directionX == -1)
             {
@@ -145,23 +151,26 @@ public class InkManager : MonoBehaviour
             Swipe_detector.Reset_SwipeX();
             RefreshView();
         }
-    }
+    }*/
 
-    IEnumerator Delay(int i)
+    IEnumerator Delay(int id)
     {
         yield return new WaitForSeconds(0.3f);
-        if (i == 1)
+        if (id == 1)
         {
             story.ChooseChoiceIndex(choice1.index);
             yield return new WaitForSeconds(0.2f);
-            RefreshView();
+            
         }
-        else if (i == 0)
+        else if (id == 0)
         {
             story.ChooseChoiceIndex(choice0.index);
             yield return new WaitForSeconds(0.2f);
-            RefreshView();
+         
+            
         }
+        
+        RefreshView();
     }
     
 }

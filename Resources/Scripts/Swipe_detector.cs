@@ -54,12 +54,14 @@ public class Swipe_detector : MonoBehaviour
                 {
                     Debug.Log("left swipe");
                     directionX = -1;
+                    inkManager.ChooseLeft();
                 }
                 //swipe right
                 else if (currentSwipe.x > 0.5f)
                 {
                     Debug.Log("right swipe");
                     directionX = 1;
+                    inkManager.ChooseRight();
                 }
             }
         }
