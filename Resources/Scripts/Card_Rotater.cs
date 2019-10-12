@@ -47,9 +47,32 @@ public class Card_Rotater : MonoBehaviour
             mySequence.Append(backSide.transform.DORotate(new Vector3(0, 90, 0), 0.5f, RotateMode.WorldAxisAdd));
 
         }
-        else if( which_seq == 0)
+        else if( which_seq == 31)
         {
+            mySequence = DOTween.Sequence();
+            inAnimationChange();
+            Invoke("inAnimationChange", 2);
+            float x = backSide.transform.position.x;
+            mySequence.Append(backSide.transform.DOMoveX(-200f, 0.5f));
+            mySequence.Append(backSide.transform.DORotate(new Vector3(0, -90, 0), 0.5f));
+            mySequence.Append(backSide.transform.DOMoveX( x,  0.1f));
+            //Смена картинки рубашки
+            mySequence.Append(frontSide.transform.DORotate(new Vector3(0, 0, 0), 0.5f));
 
         }
+        else if( which_seq == 32)
+        {
+            mySequence = DOTween.Sequence();
+            inAnimationChange();
+            Invoke("inAnimationChange", 2);
+            float x = backSide.transform.position.x;
+            mySequence.Append(backSide.transform.DOMoveX(1500f, 0.5f));
+            mySequence.Append(backSide.transform.DORotate(new Vector3(0, -90, 0), 0.5f));
+            mySequence.Append(backSide.transform.DOMoveX(x, 0.1f));
+
+            mySequence.Append(frontSide.transform.DORotate(new Vector3(0, 0, 0), 0.5f));
+
+        }
+
     }
 }

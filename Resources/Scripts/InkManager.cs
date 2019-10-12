@@ -48,7 +48,7 @@ public class InkManager : MonoBehaviour
     void StartStory()
     {
         storyEnded = false;
-        firstTime = true;
+        //firstTime = true;
         story = new Story(inkJSONAsset.text);
         //Debug.Log("!@@!@!");
         RefreshView();
@@ -104,7 +104,8 @@ public class InkManager : MonoBehaviour
       if (!card_Rotater.inAnimation)
         if (storyEnded)
         {
-            StartStory();
+                card_Rotater.TurnCard(31);
+                StartStory();
         }
         else
         {
@@ -121,8 +122,8 @@ public class InkManager : MonoBehaviour
        if(!card_Rotater.inAnimation) 
         if (storyEnded)
         {
-
-            StartStory();
+               card_Rotater.TurnCard(32);
+               StartStory();
         }
         else
         {
@@ -159,13 +160,13 @@ public class InkManager : MonoBehaviour
         if (id == 1)
         {
             story.ChooseChoiceIndex(choice1.index);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.7f);
             
         }
         else if (id == 0)
         {
             story.ChooseChoiceIndex(choice0.index);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.7f);
          
             
         }
