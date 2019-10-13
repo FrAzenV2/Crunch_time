@@ -185,6 +185,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56457239}
   m_CullTransparentMesh: 0
+--- !u!1 &87281152 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6721231538478832690, guid: 2f4391f08b0a40549b4641d4752e9392,
+    type: 3}
+  m_PrefabInstance: {fileID: 6721231538561552946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &224507691
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,6 +381,12 @@ MonoBehaviour:
   settingMenu: {fileID: 1676879874}
   magazine: {fileID: 1299954375}
   fadeIm: {fileID: 1507194558}
+--- !u!1 &443883996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6721231539002684398, guid: 2f4391f08b0a40549b4641d4752e9392,
+    type: 3}
+  m_PrefabInstance: {fileID: 6721231538561552946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &584536311
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,19 +467,14 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2071879694}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 1
+--- !u!1 &1104454063 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6721231537482347421, guid: 2f4391f08b0a40549b4641d4752e9392,
+    type: 3}
+  m_PrefabInstance: {fileID: 6721231538561552946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1299954371 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6721231537542965489, guid: 2f4391f08b0a40549b4641d4752e9392,
@@ -645,6 +652,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 273324263}
         m_MethodName: nextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 273324264}
+        m_MethodName: reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1498,5 +1516,20 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 273324259}
+    - target: {fileID: 6721231537542965499, guid: 2f4391f08b0a40549b4641d4752e9392,
+        type: 3}
+      propertyPath: magazines.Array.data[2]
+      value: 
+      objectReference: {fileID: 443883996}
+    - target: {fileID: 6721231537542965499, guid: 2f4391f08b0a40549b4641d4752e9392,
+        type: 3}
+      propertyPath: magazines.Array.data[1]
+      value: 
+      objectReference: {fileID: 1104454063}
+    - target: {fileID: 6721231537542965499, guid: 2f4391f08b0a40549b4641d4752e9392,
+        type: 3}
+      propertyPath: magazines.Array.data[0]
+      value: 
+      objectReference: {fileID: 87281152}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f4391f08b0a40549b4641d4752e9392, type: 3}
